@@ -16,32 +16,16 @@ public:
 		return *this;
 	}
 
-	inline bool isCollision( EnemyBullet& enemyBullet ) {
-		if ( list.empty() ) {
-			return false;
-		}
-
-		pixel ebX = enemyBullet.getX();
-		pixel ebY = enemyBullet.getY();
-		pixel ebR = enemyBullet.getR();
-
-		pixel pbR = list[0]->getR();
-
-		for ( const auto& bullet : list ) {
-			if ( sqrt( pow( bullet->getX() - ebX, 2. ) + pow( bullet->getY() - ebY, 2. ) ) < ebR*.8 + pbR*.2 ) {
-				return true;
-			}
-		}
-
-		MikanDraw->Printf( FONT_PROMPT, 200, 200, "%f, %f", list[0]->getX(), list[0]->getY() );
-
-		return false;
-	}
-
 	inline PlayerBullets& move() {
-		for ( const auto& bullet : list ) {
-			bullet->move();
+		if ( list.size() == 0 ) {
+			return *this;
 		}
+
+		for ( auto ite = list.begin(); ite < list.end(); ) {
+			ite = (*ite)->move().isDead() ? list.erase( ite ) : ite + 1;
+		}
+
+		MikanDraw->Printf( FONT_PROMPT, 200, 200, "%d", list.size() );
 
 		return *this;
 	}
@@ -49,6 +33,20 @@ public:
 	inline PlayerBullets& shoot( Player& player ) {
 		list.push_back( std::shared_ptr<PlayerBullet>( new PlayerBullet( player ) ) );
 		return *this;
+	}
+
+	inline bool isCollision( EnemyBullet& enemyBullet ) {
+		pixel X = enemyBullet.getX();
+		pixel Y = enemyBullet.getY();
+		pixel R = enemyBullet.getR();
+
+		for ( const auto& bullet : list ) {
+			if ( sqrt( pow( bullet->getX() - X, 2. ) + pow( bullet->getY() - Y, 2. ) ) < R*.8 + bullet->getR()*.2 ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	inline PlayerBullets& draw() {

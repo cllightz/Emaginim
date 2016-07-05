@@ -45,6 +45,21 @@ public:
 		return r;
 	}
 
+	inline bool isDead() {
+		pixel W = MikanWindow->GetWindowWidth( 1 );
+		pixel H = MikanWindow->GetWindowHeight( 1 );
+		pixel L = -W;
+		pixel R = 2 * W;
+		pixel T = -H;
+		pixel B = 2 * H;
+
+		return
+			x <= L && v_x <= 000 ||
+			R <= x && 000 <= v_x ||
+			y <= T && v_y <= 000 ||
+			B <= y && 000 <= v_y;
+	}
+
 	inline PlayerBullet& draw() {
 		MikanDraw->DrawTexture( id, round( x - w / 2 ), round( y - h / 2 ), 4 * w, 0, w, h );
 		return *this;

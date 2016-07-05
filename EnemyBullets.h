@@ -8,7 +8,7 @@
 class EnemyBullets {
 private:
 	std::vector< std::shared_ptr<EnemyBullet> > list;
-
+	
 public:
 	inline EnemyBullets() {}
 
@@ -18,9 +18,15 @@ public:
 	}
 
 	inline EnemyBullets& move() {
-		for ( const auto& bullet : list ) {
-			bullet->move();
+		if ( list.size() == 0 ) {
+			return *this;
 		}
+
+		for ( auto ite = list.begin(); ite < list.end(); ) {
+			ite = (*ite)->move().isDead() ? list.erase( ite ) : ite + 1;
+		}
+
+		MikanDraw->Printf( FONT_PROMPT, 400, 200, "%d", list.size() );
 
 		return *this;
 	}
