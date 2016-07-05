@@ -9,6 +9,8 @@
 namespace {
 	Player player;
 	EnemyBullets enemyBullets;
+	PlayerBullets playerBullets;
+	unsigned long long int counter;
 }
 
 void SystemInit() {
@@ -21,15 +23,28 @@ void UserInit() {
 	enemyBullets = EnemyBullets().init();
 
 	MikanDraw->CreateFont( FONT_PROMPT, "Meiryo UI", 24, 0xFFFFFFFF );
+
+	counter = 0;
 }
 
 int MainLoop() {
 	MikanDraw->ClearScreen();
 
-	player.move().draw();
+	player.move();
+	playerBullets.move();
+	enemyBullets.move();
 
-	if ( enemyBullets.move().draw().isCollision( player ) ) {
-		std::abort();
+	playerBullets.shoot( player );
+	enemyBullets.shoot();
+
+	enemyBullets.strike( playerBullets );
+
+	player.draw();
+	playerBullets.draw();
+	enemyBullets.draw();
+
+	if ( enemyBullets.isCollision( player ) ) {
+		return 1;
 	}
 
 	return 0;

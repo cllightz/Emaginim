@@ -1,7 +1,9 @@
 #pragma once
+#include <cassert>
 #include <vector>
 #include "EnemyBullet.h"
 #include "Player.h"
+#include "PlayerBullets.h"
 
 class EnemyBullets {
 private:
@@ -15,26 +17,29 @@ public:
 		return *this;
 	}
 
-	inline bool isCollision( Player& player ) {
-		if ( list.empty() ) {
-			return false;
-		}
-
-		pixel pX = player.getX();
-		pixel pY = player.getY();
-		pixel pR = player.getR();
-
-		pixel bR = list[0]->getR();
-
+	inline EnemyBullets& move() {
 		for ( const auto& bullet : list ) {
-			if ( sqrt( pow( bullet->getX() - pX, 2. ) + pow( bullet->getY() - pY, 2. ) ) < bR*.8 + pR*.2 ) {
-				return true;
-			}
+			bullet->move();
 		}
 
-		MikanDraw->Printf( FONT_PROMPT, 200, 200, "%f, %f", list[0]->getX(), list[0]->getY() );
+		return *this;
+	}
 
-		return false;
+	inline EnemyBullets& shoot() {
+		list.push_back( std::shared_ptr<EnemyBullet>( new EnemyBullet() ) );
+		return *this;
+	}
+
+	inline EnemyBullets& strike( PlayerBullets& playerBullets ) {
+		if ( list.size() == 0 ) {
+			return *this;
+		}
+
+		for ( auto ite = list.begin(); ite < list.end(); ) {
+			ite = playerBullets.isCollision( **ite ) ? list.erase( ite ) : ite + 1;
+		}
+
+		return *this;
 	}
 
 	inline EnemyBullets& draw() {
@@ -45,17 +50,18 @@ public:
 		return *this;
 	}
 
-	inline EnemyBullets& move() {
-		if ( rand() % 10 == 0 ) {
-			EnemyBullet* bullet = new EnemyBullet();
-			list.push_back( std::shared_ptr<EnemyBullet>( bullet ) );
-		}
+	inline bool isCollision( Player& player ) {
+		pixel X = player.getX();
+		pixel Y = player.getY();
+		pixel R = player.getR();
 
 		for ( const auto& bullet : list ) {
-			bullet->move();
+			if ( sqrt( pow( bullet->getX() - X, 2. ) + pow( bullet->getY() - Y, 2. ) ) < R*.8 + bullet->getR()*.2 ) {
+				return true;
+			}
 		}
 
-		return *this;
+		return false;
 	}
 };
 
