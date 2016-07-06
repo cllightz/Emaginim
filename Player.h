@@ -41,9 +41,9 @@ public:
 		char R = MikanInput->GetKeyNum( K_RIGHT  ) ? 0b00001 : 0;
 		char K = S | L | D | U | R;
 
-		pixel v_fast   = 2.;
+		pixel v_fast   = 4.5;
 		pixel v_fast_s = v_fast * sqrt( .5 );
-		pixel v_slow   = 1.;
+		pixel v_slow   = 1.5;
 		pixel v_slow_s = v_slow * sqrt( .5 );
 
 		switch ( K ) {

@@ -34,8 +34,13 @@ int MainLoop() {
 	playerBullets.move();
 	enemyBullets.move();
 
-	playerBullets.shoot( player );
-	enemyBullets.shoot();
+	if ( counter % 2 == 0 ) {
+		playerBullets.shoot( player );
+	}
+
+	if ( counter % 2 == 0 ) {
+		enemyBullets.shoot();
+	}
 
 	enemyBullets.strike( playerBullets );
 
@@ -46,6 +51,8 @@ int MainLoop() {
 	if ( enemyBullets.isCollision( player ) ) {
 		return 1;
 	}
+
+	counter++;
 
 	return 0;
 }

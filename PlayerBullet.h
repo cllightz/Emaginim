@@ -1,5 +1,7 @@
 #pragma once
 #include <cmath>
+#define _USE_MATH_DEFINES
+#include <math.h>
 #include <vector>
 #include <Mikan.h>
 #include "defines.h"
@@ -30,7 +32,7 @@ public:
 		r = w / 2.;
 
 		v_x = 0.;
-		v_y = -sqrt( 3. );
+		v_y = -M_PI*M_PI*M_E*M_E;
 	}
 
 	inline pixel getX() {
