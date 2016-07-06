@@ -4,16 +4,16 @@
 #include "Player.h"
 #include "PlayerBullets.h"
 
-class EnemyBullets {
+class Enemies {
 private:
-	std::vector< std::shared_ptr<EnemyBullet> > list;
-	
+	std::vector< std::shared_ptr<Enemy> > list;
+
 public:
-	inline EnemyBullets() {
-		list = std::vector< std::shared_ptr<EnemyBullet> >();
+	inline Enemies() {
+		list = std::vector< std::shared_ptr<Enemy> >();
 	}
 
-	inline EnemyBullets& move() {
+	inline Enemies& move() {
 		if ( list.size() == 0 ) {
 			return *this;
 		}
@@ -27,12 +27,24 @@ public:
 		return *this;
 	}
 
-	inline EnemyBullets& shoot() {
-		list.push_back( std::shared_ptr<EnemyBullet>( new EnemyBullet() ) );
+	inline Enemies& shoot() {
+		list.push_back( std::shared_ptr<Enemy>( new Enemy() ) );
 		return *this;
 	}
 
-	inline EnemyBullets& draw() {
+	inline Enemies& strike( PlayerBullets& playerBullets ) {
+		if ( list.size() == 0 ) {
+			return *this;
+		}
+
+		for ( auto ite = list.begin(); ite < list.end(); ) {
+			ite = playerBullets.isCollision( **ite ) ? list.erase( ite ) : ite + 1;
+		}
+
+		return *this;
+	}
+
+	inline Enemies& draw() {
 		for ( const auto& bullet : list ) {
 			bullet->draw();
 		}

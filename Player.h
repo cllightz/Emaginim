@@ -17,19 +17,15 @@ private:
 public:
 	inline Player() {}
 
-	inline Player& init() {
+	inline Player( pixel X, pixel Y ) {
 		id = TEXTURE_PLAYER;
-		MikanDraw->CreateTexture( id, "xchu.png", TRC_ZERO );
 
-		x = MikanWindow->GetWindowWidth( 1 ) / 2.;
-		y = MikanWindow->GetWindowHeight( 1 ) / 2.;
-
+		x = X;
+		y = Y;
 		w = 32.;
 		h = 32.;
 
 		r = w / 2.;
-
-		return *this;
 	}
 
 	inline Player& move() {

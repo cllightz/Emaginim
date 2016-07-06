@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include "EnemyBullet.h"
+#include "Enemy.h"
 #include "PlayerBullet.h"
 #include "Player.h"
 
@@ -9,11 +9,8 @@ private:
 	std::vector< std::shared_ptr<PlayerBullet> > list;
 
 public:
-	inline PlayerBullets() {}
-
-	inline PlayerBullets& init() {
+	inline PlayerBullets() {
 		list = std::vector< std::shared_ptr<PlayerBullet> >();
-		return *this;
 	}
 
 	inline PlayerBullets& move() {
@@ -35,10 +32,10 @@ public:
 		return *this;
 	}
 
-	inline bool isCollision( EnemyBullet& enemyBullet ) {
-		pixel X = enemyBullet.getX();
-		pixel Y = enemyBullet.getY();
-		pixel R = enemyBullet.getR();
+	inline bool isCollision( Enemy& enemy ) {
+		pixel X = enemy.getX();
+		pixel Y = enemy.getY();
+		pixel R = enemy.getR();
 
 		for ( const auto& bullet : list ) {
 			if ( sqrt( pow( bullet->getX() - X, 2. ) + pow( bullet->getY() - Y, 2. ) ) < R*.8 + bullet->getR()*.2 ) {

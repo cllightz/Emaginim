@@ -2,13 +2,15 @@
 #include <memory>
 #include <vector>
 #include "defines.h"
+#include "Enemy.h"
+#include "Enemies.h"
 #include "EnemyBullet.h"
 #include "EnemyBullets.h"
 #include "Player.h"
 
 namespace {
 	Player player;
-	EnemyBullets enemyBullets;
+	Enemies enemies;
 	PlayerBullets playerBullets;
 	unsigned long long int counter;
 }
@@ -19,10 +21,12 @@ void SystemInit() {
 }
 
 void UserInit() {
-	player = Player().init();
-	enemyBullets = EnemyBullets().init();
-
+	MikanDraw->CreateTexture( TEXTURE_PLAYER, "xchu.png", TRC_ZERO );
+	MikanDraw->CreateTexture( TEXTURE_BULLET, "bullet.png", TRC_ZERO );
 	MikanDraw->CreateFont( FONT_PROMPT, "Meiryo UI", 24, 0xFFFFFFFF );
+
+	player = Player( MikanDraw->GetScreenWidth( 1 ) / 2., MikanDraw->GetScreenHeight( 1 ) / 2. );
+	enemies = Enemies();
 
 	counter = 0;
 }
@@ -30,25 +34,25 @@ void UserInit() {
 int MainLoop() {
 	MikanDraw->ClearScreen();
 
-	player.move();
-	playerBullets.move();
-	enemyBullets.move();
-
-	if ( counter % 2 == 0 ) {
+	if ( MikanInput->GetKeyNum( K_Z ) ) {
 		playerBullets.shoot( player );
 	}
 
 	if ( counter % 2 == 0 ) {
-		enemyBullets.shoot();
+		enemies.shoot();
 	}
 
-	enemyBullets.strike( playerBullets );
+	player.move();
+	playerBullets.move();
+	enemies.move();
+
+	enemies.strike( playerBullets );
 
 	player.draw();
 	playerBullets.draw();
-	enemyBullets.draw();
+	enemies.draw();
 
-	if ( enemyBullets.isCollision( player ) ) {
+	if ( enemies.isCollision( player ) ) {
 		return 1;
 	}
 

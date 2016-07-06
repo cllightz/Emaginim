@@ -1,19 +1,14 @@
 #pragma once
 #include <cmath>
-#define _USE_MATH_DEFINES
-#include <math.h>
 #include <vector>
 #include <Mikan.h>
 #include "defines.h"
-#include "Player.h"
 
-class PlayerBullet {
+class Enemy {
 private:
 	texture_t id;
 	pixel x;
 	pixel y;
-	pixel x_previous;
-	pixel y_previous;
 	pixel v_x;
 	pixel v_y;
 	pixel w;
@@ -21,21 +16,19 @@ private:
 	pixel r;
 
 public:
-	PlayerBullet( Player& player ) {
-		id = TEXTURE_BULLET;
+	inline Enemy() {
+		id = TEXTURE_ENEMY;
 
-		x = player.getX();
-		y = player.getY();
-		x_previous = x;
-		y_previous = y;
+		x = MikanWindow->GetWindowWidth() / 2.;
+		y = -50;
 
-		w = 16.;
-		h = 16.;
+		w = 32.;
+		h = 32.;
 
 		r = w / 2.;
 
-		v_x = 0.;
-		v_y = -M_PI*M_PI*M_E*M_E;
+		v_x = double( rand() ) / double( RAND_MAX ) - .5;
+		v_y = double( rand() ) / double( RAND_MAX ) + .5;
 	}
 
 	inline pixel getX() {
@@ -65,14 +58,12 @@ public:
 			B <= y && 000 <= v_y;
 	}
 
-	inline PlayerBullet& draw() {
-		MikanDraw->DrawTexture( id, round( x - w / 2 ), round( y - h / 2 ), 4 * w, 0, w, h );
+	inline Enemy& draw() {
+		MikanDraw->DrawTexture( id, round( x - w / 2 ), round( y - h / 2 ), 0, 0, w, h );
 		return *this;
 	}
 
-	inline PlayerBullet& move() {
-		x_previous = x;
-		y_previous = y;
+	inline Enemy& move() {
 		x += v_x;
 		y += v_y;
 		return *this;
