@@ -21,7 +21,8 @@ void SystemInit() {
 }
 
 void UserInit() {
-	MikanDraw->CreateTexture( TEXTURE_PLAYER, "xchu.png", TRC_ZERO );
+	MikanDraw->CreateTexture( TEXTURE_PLAYER, "player.png", TRC_ZERO );
+	MikanDraw->CreateTexture( TEXTURE_ENEMY, "xchu.png", TRC_ZERO );
 	MikanDraw->CreateTexture( TEXTURE_BULLET, "bullet.png", TRC_ZERO );
 	MikanDraw->CreateFont( FONT_PROMPT, "Meiryo UI", 24, 0xFFFFFFFF );
 
@@ -46,7 +47,7 @@ int MainLoop() {
 	playerBullets.move();
 	enemies.move();
 
-	enemies.strike( playerBullets );
+	playerBullets.strike( enemies );
 
 	player.draw();
 	playerBullets.draw();

@@ -14,6 +14,9 @@ private:
 	pixel w;
 	pixel h;
 	pixel r;
+	hp_t hp;
+	pixel rx;
+	pixel ry;
 
 public:
 	inline Enemy() {
@@ -24,11 +27,15 @@ public:
 
 		w = 32.;
 		h = 32.;
+		rx = 0.;
+		ry = 0.;
 
 		r = w / 2.;
 
 		v_x = double( rand() ) / double( RAND_MAX ) - .5;
 		v_y = double( rand() ) / double( RAND_MAX ) + .5;
+
+		hp = 1;
 	}
 
 	inline pixel getX() {
@@ -51,7 +58,8 @@ public:
 		pixel T = -H;
 		pixel B = 2 * H;
 
-		return
+		MikanDraw->Printf( FONT_PROMPT, 0, 0, "%d", hp );
+		return hp <= 0 ||
 			x <= L && v_x <= 000 ||
 			R <= x && 000 <= v_x ||
 			y <= T && v_y <= 000 ||
@@ -59,13 +67,18 @@ public:
 	}
 
 	inline Enemy& draw() {
-		MikanDraw->DrawTexture( id, round( x - w / 2 ), round( y - h / 2 ), 0, 0, w, h );
+		MikanDraw->DrawTexture( id, round( x - w / 2 ), round( y - h / 2 ), rx, ry, w, h );
 		return *this;
 	}
 
 	inline Enemy& move() {
 		x += v_x;
 		y += v_y;
+		return *this;
+	}
+
+	inline Enemy& hit() {
+		hp--;
 		return *this;
 	}
 };

@@ -32,18 +32,6 @@ public:
 		return *this;
 	}
 
-	inline Enemies& strike( PlayerBullets& playerBullets ) {
-		if ( list.size() == 0 ) {
-			return *this;
-		}
-
-		for ( auto ite = list.begin(); ite < list.end(); ) {
-			ite = playerBullets.isCollision( **ite ) ? list.erase( ite ) : ite + 1;
-		}
-
-		return *this;
-	}
-
 	inline Enemies& draw() {
 		for ( const auto& bullet : list ) {
 			bullet->draw();
@@ -57,8 +45,19 @@ public:
 		pixel Y = player.getY();
 		pixel R = player.getR();
 
-		for ( const auto& bullet : list ) {
-			if ( sqrt( pow( bullet->getX() - X, 2. ) + pow( bullet->getY() - Y, 2. ) ) < R*.5 + bullet->getR()*.1 ) {
+		for ( const auto& enemy : list ) {
+			if ( sqrt( pow( enemy->getX() - X, 2. ) + pow( enemy->getY() - Y, 2. ) ) < R*.5 + enemy->getR()*.1 ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	inline bool isCollision( pixel X, pixel Y, pixel R ) {
+		for ( const auto& enemy : list ) {
+			if ( sqrt( pow( enemy->getX() - X, 2. ) + pow( enemy->getY() - Y, 2. ) ) < R*.5 + enemy->getR()*.1 ) {
+				enemy->hit();
 				return true;
 			}
 		}

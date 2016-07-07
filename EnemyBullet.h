@@ -47,10 +47,10 @@ public:
 	inline bool isDead() {
 		pixel W = MikanWindow->GetWindowWidth( 1 );
 		pixel H = MikanWindow->GetWindowHeight( 1 );
-		pixel L = -W;
-		pixel R = 2 * W;
-		pixel T = -H;
-		pixel B = 2 * H;
+		pixel L = 0 - w;
+		pixel R = W + w;
+		pixel T = 0 - h;
+		pixel B = H + h;
 
 		return
 			x <= L && v_x <= 000 ||

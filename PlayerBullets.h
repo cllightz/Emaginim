@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "Enemy.h"
+#include "GatlingBullet.h"
 #include "PlayerBullet.h"
 #include "Player.h"
 
@@ -28,22 +29,17 @@ public:
 	}
 
 	inline PlayerBullets& shoot( Player& player ) {
-		list.push_back( std::shared_ptr<PlayerBullet>( new PlayerBullet( player ) ) );
+		list.push_back( std::shared_ptr<PlayerBullet>( new GatlingBullet( player, +2.5 ) ) );
+		list.push_back( std::shared_ptr<PlayerBullet>( new GatlingBullet( player, -2.5 ) ) );
 		return *this;
 	}
 
-	inline bool isCollision( Enemy& enemy ) {
-		pixel X = enemy.getX();
-		pixel Y = enemy.getY();
-		pixel R = enemy.getR();
-
-		for ( const auto& bullet : list ) {
-			if ( sqrt( pow( bullet->getX() - X, 2. ) + pow( bullet->getY() - Y, 2. ) ) < R*.8 + bullet->getR()*.2 ) {
-				return true;
-			}
+	inline PlayerBullets& strike( Enemies& enemies ) {
+		for ( std::vector< std::shared_ptr<PlayerBullet> >::iterator ite = list.begin(); ite != list.end(); ) {
+			ite = (*ite)->isCollision( enemies ) ? list.erase( ite ) : ite + 1;
 		}
 
-		return false;
+		return *this;
 	}
 
 	inline PlayerBullets& draw() {

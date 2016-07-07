@@ -7,8 +7,10 @@
 #include "defines.h"
 #include "Player.h"
 
+class Enemies;
+
 class PlayerBullet {
-private:
+protected:
 	texture_t id;
 	pixel x;
 	pixel y;
@@ -19,8 +21,12 @@ private:
 	pixel w;
 	pixel h;
 	pixel r;
+	pixel rx;
+	pixel ry;
 
 public:
+	PlayerBullet() {}
+
 	PlayerBullet( Player& player ) {
 		id = TEXTURE_BULLET;
 
@@ -31,6 +37,8 @@ public:
 
 		w = 16.;
 		h = 16.;
+		rx = 4. * w;
+		ry = 0.;
 
 		r = w / 2.;
 
@@ -53,10 +61,10 @@ public:
 	inline bool isDead() {
 		pixel W = MikanWindow->GetWindowWidth( 1 );
 		pixel H = MikanWindow->GetWindowHeight( 1 );
-		pixel L = -W;
-		pixel R = 2 * W;
-		pixel T = -H;
-		pixel B = 2 * H;
+		pixel L = 0 - w;
+		pixel R = W + w;
+		pixel T = 0 - h;
+		pixel B = H + h;
 
 		return
 			x <= L && v_x <= 000 ||
@@ -65,17 +73,36 @@ public:
 			B <= y && 000 <= v_y;
 	}
 
-	inline PlayerBullet& draw() {
-		MikanDraw->DrawTexture( id, round( x - w / 2 ), round( y - h / 2 ), 4 * w, 0, w, h );
-		return *this;
-	}
-
 	inline PlayerBullet& move() {
 		x_previous = x;
 		y_previous = y;
 		x += v_x;
 		y += v_y;
 		return *this;
+	}
+
+	bool isCollision( Enemies& );
+
+	inline PlayerBullet& draw() {
+		MikanDraw->DrawTexture( id, round( x - w / 2 ), round( y - h / 2 ), rx, ry, w, h );
+		return *this;
+	}
+
+protected:
+	inline bool isReached( pixel X, pixel Y ) {
+		if ( x_previous <= x ) {
+			if ( y_previous <= y ) {
+				return x <= X && y <= Y;
+			} else {
+				return x <= X && Y <= y;
+			}
+		} else {
+			if ( y_previous <= y ) {
+				return X <= x && y <= Y;
+			} else {
+				return X <= x && Y <= y;
+			}
+		}
 	}
 };
 

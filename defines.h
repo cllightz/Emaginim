@@ -1,11 +1,13 @@
 #pragma once
 
 typedef double pixel;
+typedef double radian;
+typedef int hp_t;
 
 enum texture_t {
-	TEXTURE_PLAYER = 0,
-	TEXTURE_ENEMY  = 0,
-	TEXTURE_BULLET = 1,
+	TEXTURE_PLAYER,
+	TEXTURE_ENEMY,
+	TEXTURE_BULLET,
 };
 
 enum font_t {
