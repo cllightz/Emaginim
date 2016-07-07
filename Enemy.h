@@ -17,6 +17,7 @@ private:
 	pixel h;
 	double scale;
 	pixel r;
+	hp_t hp_max;
 	hp_t hp;
 	pixel rx;
 	pixel ry;
@@ -24,10 +25,14 @@ private:
 	pixel center_x;
 	pixel center_y;
 	radian theta;
-	radian delta_theta;
+	radian omega;
 	double k_theta_x;
 	double k_theta_y;
 	pixel amplitude;
+
+	radian theta_option;
+	radian omega_option;
+	pixel R_option;
 
 public:
 	inline Enemy() {
@@ -47,15 +52,20 @@ public:
 		v_x = 0.;
 		v_y = 0.;
 
-		hp = 1000000;
+		hp_max = 1000000;
+		hp = hp_max;
 
 		center_x = MikanWindow->GetWindowWidth( 1 ) / 2.;
 		center_y = MikanWindow->GetWindowHeight( 1 ) / 4.;
 		theta = 0.;
-		delta_theta = .005;
+		omega = .005;
 		k_theta_x = 5.;
 		k_theta_y = 6.;
 		amplitude = 100.;
+
+		theta_option = .0;
+		omega_option = .05;
+		R_option = 100;
 	}
 
 	inline pixel getX() {
@@ -88,11 +98,22 @@ public:
 
 	inline Enemy& draw() {
 		MikanDraw->DrawTextureScalingC( id, round( x ), round( y ), rx, ry, w, h, scale );
+
+		int num =
+			hp < hp_max * 1 / 4 ? 4 :
+			hp < hp_max * 2 / 4 ? 3 :
+			hp < hp_max * 3 / 4 ? 2 : 1;
+
+		for ( int i = 0; i < num; i++ ) {
+			MikanDraw->DrawTextureRotationC( id, round( x + R_option * cos( theta_option + 2 * M_PI / num * i ) ), round( y + R_option * sin( theta_option + 2 * M_PI / num * i ) ), rx, ry, w, h, 0. );
+		}
+
 		return *this;
 	}
 
 	inline Enemy& move() {
-		theta += delta_theta;
+		theta += omega;
+		theta_option += omega_option;
 
 		if ( M_PI < theta ) {
 			theta - M_PI;
