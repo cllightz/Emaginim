@@ -1,5 +1,6 @@
 #pragma once
 #include "PlayerBullet.h"
+#include <random>
 
 class GatlingBullet : public PlayerBullet {
 public:
@@ -18,7 +19,17 @@ public:
 
 		r = w / 2.;
 
-		v_x = 0.;
-		v_y = -M_PI*M_PI*M_E*M_E;
+		std::random_device rnd;
+		std::mt19937 mt( rnd() );
+		std::normal_distribution<> normal_velocity( 100., 1. );
+		pixel v =  normal_velocity( mt );
+		std::normal_distribution<> normal_angle( -M_PI_2, M_PI_4 / 64 );
+		radian theta = normal_angle( mt );
+		v_x = cos( theta ) * v;
+		v_y = sin( theta ) * v;
+		std::normal_distribution<> normal_gap( -.5, .5 );
+		radian gap = normal_gap( mt );
+		x -= v_x * gap;
+		y -= v_y * gap;
 	}
 };
