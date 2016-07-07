@@ -12,7 +12,7 @@ bool PlayerBullet::isCollision( Enemies& enemies ) {
 	pixel y_tmp = y_previous;
 
 	while ( !isReached( x_tmp, y_tmp ) ) {
-		if ( enemies.isCollision( x_tmp, y_tmp, r ) ) {
+		if ( enemies.isCollision( x_tmp, y_tmp, r, damage ) ) {
 			return true;
 		}
 

@@ -4,26 +4,28 @@
 
 class GatlingBullet : public PlayerBullet {
 public:
-	GatlingBullet( Player& player, pixel X ) {
+	GatlingBullet( Player& player, pixel X = 0., pixel Y = 0., pixel V = 100. ) {
 		id = TEXTURE_BULLET;
 
 		x = player.getX() + X;
-		y = player.getY();
+		y = player.getY() + Y;
 		x_previous = x;
 		y_previous = y;
 
 		w = 2.;
-		h = 3.;
+		h = 4.;
 		rx = 0.;
 		ry = 16.;
 
 		r = w / 2.;
 
+		damage = 11;
+
 		std::random_device rnd;
 		std::mt19937 mt( rnd() );
-		std::normal_distribution<> normal_velocity( 100., 1. );
+		std::normal_distribution<> normal_velocity( V, 1. );
 		pixel v =  normal_velocity( mt );
-		std::normal_distribution<> normal_angle( -M_PI_2, M_PI_4 / 64 );
+		std::normal_distribution<> normal_angle( -M_PI_2, M_PI_4 / 1000. );
 		radian theta = normal_angle( mt );
 		v_x = cos( theta ) * v;
 		v_y = sin( theta ) * v;

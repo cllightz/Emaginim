@@ -27,7 +27,7 @@ public:
 		return *this;
 	}
 
-	inline Enemies& shoot() {
+	inline Enemies& spawn() {
 		list.push_back( std::shared_ptr<Enemy>( new Enemy() ) );
 		return *this;
 	}
@@ -54,10 +54,10 @@ public:
 		return false;
 	}
 
-	inline bool isCollision( pixel X, pixel Y, pixel R ) {
+	inline bool isCollision( pixel X, pixel Y, pixel R, hp_t damage ) {
 		for ( const auto& enemy : list ) {
-			if ( sqrt( pow( enemy->getX() - X, 2. ) + pow( enemy->getY() - Y, 2. ) ) < R*.5 + enemy->getR()*.1 ) {
-				enemy->hit();
+			if ( sqrt( pow( enemy->getX() - X, 2. ) + pow( enemy->getY() - Y, 2. ) ) < R*.9 + enemy->getR()*.9 ) {
+				enemy->hit( damage );
 				return true;
 			}
 		}

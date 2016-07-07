@@ -29,8 +29,8 @@ public:
 	}
 
 	inline PlayerBullets& shoot( Player& player ) {
-		list.push_back( std::shared_ptr<PlayerBullet>( new GatlingBullet( player, +2.5 ) ) );
-		list.push_back( std::shared_ptr<PlayerBullet>( new GatlingBullet( player, -2.5 ) ) );
+		list.push_back( std::shared_ptr<PlayerBullet>( new GatlingBullet( player, +3. ) ) );
+		list.push_back( std::shared_ptr<PlayerBullet>( new GatlingBullet( player, -3. ) ) );
 		return *this;
 	}
 

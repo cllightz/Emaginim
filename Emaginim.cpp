@@ -26,7 +26,7 @@ void UserInit() {
 	MikanDraw->CreateTexture( TEXTURE_BULLET, "bullet.png", TRC_ZERO );
 	MikanDraw->CreateFont( FONT_PROMPT, "Meiryo UI", 24, 0xFFFFFFFF );
 
-	player = Player( MikanDraw->GetScreenWidth( 1 ) / 2., MikanDraw->GetScreenHeight( 1 ) / 2. );
+	player = Player( MikanDraw->GetScreenWidth( 1 ) / 2., MikanDraw->GetScreenHeight( 1 ) * 3 / 4. );
 	enemies = Enemies();
 
 	counter = 0;
@@ -39,8 +39,8 @@ int MainLoop() {
 		playerBullets.shoot( player );
 	}
 
-	if ( counter % 2 == 0 ) {
-		enemies.shoot();
+	if ( counter == 0 ) {
+		enemies.spawn();
 	}
 
 	player.move();
@@ -50,8 +50,8 @@ int MainLoop() {
 	playerBullets.strike( enemies );
 
 	player.draw();
-	playerBullets.draw();
 	enemies.draw();
+	playerBullets.draw();
 
 	if ( enemies.isCollision( player ) ) {
 		return 1;

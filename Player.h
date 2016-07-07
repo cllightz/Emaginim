@@ -145,7 +145,7 @@ public:
 	}
 
 	inline Player& draw() {
-		MikanDraw->DrawTexture( id, round( x - w / 2. ), round( y - h / 2. ), 0, 0, w, h );
+		MikanDraw->DrawTextureC( id, round( x ), round( y ), 0, 0, w, h );
 		return *this;
 	}
 

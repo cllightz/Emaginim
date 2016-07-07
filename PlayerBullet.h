@@ -24,6 +24,8 @@ protected:
 	pixel rx;
 	pixel ry;
 
+	hp_t damage;
+
 public:
 	PlayerBullet() {}
 
@@ -44,6 +46,8 @@ public:
 
 		v_x = 0.;
 		v_y = -M_PI*M_PI*M_E*M_E;
+
+		damage = 1.;
 	}
 
 	inline pixel getX() {
@@ -84,7 +88,7 @@ public:
 	bool isCollision( Enemies& );
 
 	inline PlayerBullet& draw() {
-		MikanDraw->DrawTexture( id, round( x - w / 2 ), round( y - h / 2 ), rx, ry, w, h );
+		MikanDraw->DrawTextureC( id, round( x ), round( y ), rx, ry, w, h );
 		return *this;
 	}
 
