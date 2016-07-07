@@ -16,20 +16,19 @@ private:
 	pixel r;
 
 public:
-	inline EnemyBullet() {
+	inline EnemyBullet( pixel X, pixel Y, pixel V_X, pixel V_Y ) {
 		id = TEXTURE_BULLET;
-		MikanDraw->CreateTexture( id, "bullet.png", TRC_ZERO );
 
-		x = MikanWindow->GetWindowWidth() / 2.;
-		y = -50;
+		x = X;
+		y = Y;
 
 		w = 16.;
 		h = 16.;
 
 		r = w / 2.;
 
-		v_x = double( rand() ) / double( RAND_MAX ) - .5;
-		v_y = double( rand() ) / double( RAND_MAX ) + .5;
+		v_x = V_X;
+		v_y = V_Y;
 	}
 
 	inline pixel getX() {

@@ -27,8 +27,19 @@ public:
 		return *this;
 	}
 
-	inline EnemyBullets& shoot() {
-		list.push_back( std::shared_ptr<EnemyBullet>( new EnemyBullet() ) );
+	inline EnemyBullets& shoot( Enemy& enemy, int counter ) {
+		if ( counter % 50 == 10 || counter % 50 == 10 ) {
+			for ( int i = 0; i < enemy.getOptionNum(); i++ ) {
+				for ( int theta = 0; theta < 360; theta += 10 ) {
+					if ( theta % 60 == 10 || theta % 60 == 20 ) {
+						pixel v = .75;
+						pixel theta_rad = theta * M_PI / 180.;
+						list.push_back( std::shared_ptr<EnemyBullet>( new EnemyBullet( enemy.getOptionX( i ), enemy.getOptionY( i ), v * cos( theta_rad ), v * sin( theta_rad ) ) ) );
+					}
+				}
+			}
+		}
+
 		return *this;
 	}
 
@@ -46,7 +57,7 @@ public:
 		pixel R = player.getR();
 
 		for ( const auto& bullet : list ) {
-			if ( sqrt( pow( bullet->getX() - X, 2. ) + pow( bullet->getY() - Y, 2. ) ) < R*.5 + bullet->getR()*.1 ) {
+			if ( sqrt( pow( bullet->getX() - X, 2. ) + pow( bullet->getY() - Y, 2. ) ) < R*.1 + bullet->getR()*.5 ) {
 				return true;
 			}
 		}

@@ -52,19 +52,19 @@ public:
 		v_x = 0.;
 		v_y = 0.;
 
-		hp_max = 1000000;
+		hp_max = 200000;
 		hp = hp_max;
 
 		center_x = MikanWindow->GetWindowWidth( 1 ) / 2.;
 		center_y = MikanWindow->GetWindowHeight( 1 ) / 4.;
 		theta = 0.;
-		omega = .005;
+		omega = .0025;
 		k_theta_x = 5.;
 		k_theta_y = 6.;
 		amplitude = 100.;
 
 		theta_option = .0;
-		omega_option = .05;
+		omega_option = .025;
 		R_option = 100;
 	}
 
@@ -80,6 +80,21 @@ public:
 		return r;
 	}
 
+	inline int getOptionNum() {
+		return
+			hp < hp_max * 1 / 4 ? 4 :
+			hp < hp_max * 2 / 4 ? 3 :
+			hp < hp_max * 3 / 4 ? 2 : 1;
+	}
+
+	inline pixel getOptionX( int num ) {
+		return x + R_option * cos( theta_option + 2 * M_PI / getOptionNum() * num );
+	}
+
+	inline pixel getOptionY( int num ) {
+		return y + R_option * sin( theta_option + 2 * M_PI / getOptionNum() * num );
+	}
+
 	inline bool isDead() {
 		pixel W = MikanWindow->GetWindowWidth( 1 );
 		pixel H = MikanWindow->GetWindowHeight( 1 );
@@ -89,6 +104,7 @@ public:
 		pixel B = 2 * H;
 
 		MikanDraw->Printf( FONT_PROMPT, 0, 0, "%d", hp );
+
 		return hp <= 0 ||
 			x <= L && v_x <= 000 ||
 			R <= x && 000 <= v_x ||
@@ -99,13 +115,8 @@ public:
 	inline Enemy& draw() {
 		MikanDraw->DrawTextureScalingC( id, round( x ), round( y ), rx, ry, w, h, scale );
 
-		int num =
-			hp < hp_max * 1 / 4 ? 4 :
-			hp < hp_max * 2 / 4 ? 3 :
-			hp < hp_max * 3 / 4 ? 2 : 1;
-
-		for ( int i = 0; i < num; i++ ) {
-			MikanDraw->DrawTextureRotationC( id, round( x + R_option * cos( theta_option + 2 * M_PI / num * i ) ), round( y + R_option * sin( theta_option + 2 * M_PI / num * i ) ), rx, ry, w, h, 0. );
+		for ( int i = 0; i < getOptionNum(); i++ ) {
+			MikanDraw->DrawTextureRotationC( id, round( getOptionX( i ) ), round( getOptionY( i ) ), rx, ry, w, h, 0. );
 		}
 
 		return *this;
@@ -122,7 +133,6 @@ public:
 		x = center_x + amplitude * sin( k_theta_x * theta );
 		y = center_y + amplitude * sin( k_theta_y * theta );
 
-		MikanDraw->Printf( FONT_PROMPT, 0, 50, "%f %f", x, y );
 		return *this;
 	}
 

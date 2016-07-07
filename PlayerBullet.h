@@ -73,7 +73,7 @@ public:
 		pixel R = W + w;
 		pixel T = 0 - h;
 		pixel B = H + h;
-		MikanDraw->Printf( FONT_PROMPT, 0, 100, "%f %f", x, y );
+
 		return
 			x <= L && v_x <= 000 ||
 			R <= x && 000 <= v_x ||

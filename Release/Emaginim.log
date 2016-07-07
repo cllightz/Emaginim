@@ -1,0 +1,56 @@
+﻿  Emaginim.cpp
+e:\onedrive\ドキュメント\c++\emaginim\Enemy.h(116): warning C4244: '引数': 'pixel' から 'int' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\Enemy.h(116): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\Enemy.h(119): warning C4244: '引数': 'pixel' から 'int' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\Enemy.h(119): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\Enemy.h(130): warning C4552: '-': 演算子にプログラム上の作用がありません。作用を伴う演算子を使用してください
+e:\onedrive\ドキュメント\c++\emaginim\EnemyBullet.h(62): warning C4244: '引数': 'pixel' から 'int' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\EnemyBullet.h(62): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\Player.h(148): warning C4244: '引数': 'pixel' から 'int' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\Player.h(148): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\PlayerBullet.h(54): warning C4244: '=': 'double' から 'hp_t' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\PlayerBullet.h(97): warning C4244: '引数': 'pixel' から 'int' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\PlayerBullet.h(97): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\MissileBullet.h(94): warning C4244: '引数': 'pixel' から 'int' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\MissileBullet.h(94): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
+Emaginim.cpp(49): warning C4244: '引数': 'unsigned __int64' から 'int' への変換です。データが失われる可能性があります。
+Emaginim.cpp(56): warning C4244: '引数': 'unsigned __int64' から 'int' への変換です。データが失われる可能性があります。
+Emaginim.cpp(68): warning C4244: '引数': 'pixel' から 'int' への変換です。データが失われる可能性があります。
+  PlayerBullet.cpp
+e:\onedrive\ドキュメント\c++\emaginim\EnemyBullet.h(62): warning C4244: '引数': 'pixel' から 'int' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\EnemyBullet.h(62): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\Player.h(148): warning C4244: '引数': 'pixel' から 'int' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\Player.h(148): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\PlayerBullet.h(54): warning C4244: '=': 'double' から 'hp_t' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\PlayerBullet.h(97): warning C4244: '引数': 'pixel' から 'int' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\PlayerBullet.h(97): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\Enemy.h(116): warning C4244: '引数': 'pixel' から 'int' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\Enemy.h(116): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\Enemy.h(119): warning C4244: '引数': 'pixel' から 'int' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\Enemy.h(119): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\Enemy.h(130): warning C4552: '-': 演算子にプログラム上の作用がありません。作用を伴う演算子を使用してください
+e:\onedrive\ドキュメント\c++\emaginim\MissileBullet.h(94): warning C4244: '引数': 'pixel' から 'int' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\MissileBullet.h(94): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
+  PlayerBullets.cpp
+e:\onedrive\ドキュメント\c++\emaginim\Enemy.h(116): warning C4244: '引数': 'pixel' から 'int' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\Enemy.h(116): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\Enemy.h(119): warning C4244: '引数': 'pixel' から 'int' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\Enemy.h(119): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\Enemy.h(130): warning C4552: '-': 演算子にプログラム上の作用がありません。作用を伴う演算子を使用してください
+e:\onedrive\ドキュメント\c++\emaginim\EnemyBullet.h(62): warning C4244: '引数': 'pixel' から 'int' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\EnemyBullet.h(62): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\Player.h(148): warning C4244: '引数': 'pixel' から 'int' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\Player.h(148): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\PlayerBullet.h(54): warning C4244: '=': 'double' から 'hp_t' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\PlayerBullet.h(97): warning C4244: '引数': 'pixel' から 'int' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\PlayerBullet.h(97): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\MissileBullet.h(94): warning C4244: '引数': 'pixel' から 'int' への変換です。データが失われる可能性があります。
+e:\onedrive\ドキュメント\c++\emaginim\MissileBullet.h(94): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
+  コード生成しています。
+  All 2340 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  コード生成が終了しました。
+MikanLibrary.lib(MikanLibrary.obj) : warning LNK4099: PDB 'MikanLibrary2015.pdb' が 'MikanLibrary.lib(MikanLibrary.obj)' で、または 'E:\OneDrive\ドキュメント\C++\Emaginim\Release\MikanLibrary2015.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+MikanLibrary.lib(MikanLibraryPub.obj) : warning LNK4099: PDB 'MikanLibrary2015.pdb' が 'MikanLibrary.lib(MikanLibraryPub.obj)' で、または 'E:\OneDrive\ドキュメント\C++\Emaginim\Release\MikanLibrary2015.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+MikanLibrary.lib(WinMain.obj) : warning LNK4099: PDB 'MikanLibrary2015.pdb' が 'MikanLibrary.lib(WinMain.obj)' で、または 'E:\OneDrive\ドキュメント\C++\Emaginim\Release\MikanLibrary2015.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libvorbisfile_static.lib(vorbisfile.obj) : warning LNK4099: PDB 'libvorbisfile_static.pdb' が 'libvorbisfile_static.lib(vorbisfile.obj)' で、または 'E:\OneDrive\ドキュメント\C++\Emaginim\Release\libvorbisfile_static.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+  Emaginim.vcxproj -> E:\OneDrive\ドキュメント\C++\Emaginim\Release\Emaginim.exe

@@ -31,8 +31,6 @@ public:
 			ite = (*ite)->move().isDead() ? list.erase( ite ) : ite + 1;
 		}
 
-		MikanDraw->Printf( FONT_PROMPT, 400, 200, "%d", list.size() );
-
 		return *this;
 	}
 
@@ -55,7 +53,7 @@ public:
 		pixel R = player.getR();
 
 		for ( const auto& enemy : list ) {
-			if ( sqrt( pow( enemy->getX() - X, 2. ) + pow( enemy->getY() - Y, 2. ) ) < R*.5 + enemy->getR()*.1 ) {
+			if ( sqrt( pow( enemy->getX() - X, 2. ) + pow( enemy->getY() - Y, 2. ) ) < R*.1 + enemy->getR()*.5 ) {
 				return true;
 			}
 		}

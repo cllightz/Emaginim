@@ -13,6 +13,7 @@ namespace {
 	Player player;
 	Enemies enemies;
 	PlayerBullets playerBullets;
+	EnemyBullets enemyBullets;
 	unsigned long long int counter;
 }
 
@@ -29,6 +30,8 @@ void UserInit() {
 
 	player = Player( MikanDraw->GetScreenWidth( 1 ) / 2., MikanDraw->GetScreenHeight( 1 ) * 3 / 4. );
 	enemies = Enemies();
+	playerBullets = PlayerBullets();
+	enemyBullets = EnemyBullets();
 
 	counter = 0;
 }
@@ -36,17 +39,24 @@ void UserInit() {
 int MainLoop() {
 	MikanDraw->ClearScreen();
 
-	if ( MikanInput->GetKeyNum( K_Z ) ) {
-		playerBullets.shoot( player, enemies, counter );
-	}
-
 	if ( counter == 0 ) {
 		enemies.spawn();
 	}
 
 	player.move();
+
+	if ( MikanInput->GetKeyNum( K_Z ) ) {
+		playerBullets.shoot( player, enemies, counter );
+	}
+
 	playerBullets.move();
 	enemies.move();
+
+	if ( enemies.hasEnemy() ) {
+		enemyBullets.shoot( *(enemies.getEnemy()), counter );
+	}
+	
+	enemyBullets.move();
 
 	playerBullets.strike( enemies );
 
@@ -54,7 +64,17 @@ int MainLoop() {
 	playerBullets.draw();
 	player.draw();
 
+	if ( MikanInput->GetKeyNum( K_LSHIFT ) ) {
+		MikanDraw->DrawCircleC( player.getX(), player.getY(), player.getR() * .1 );
+	}
+
+	enemyBullets.draw();
+
 	if ( enemies.isCollision( player ) ) {
+		return 1;
+	}
+
+	if ( enemyBullets.isCollision( player ) ) {
 		return 1;
 	}
 

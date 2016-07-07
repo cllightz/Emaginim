@@ -91,7 +91,6 @@ public:
 	}
 
 	inline PlayerBullet& draw() {
-		MikanDraw->Printf( FONT_PROMPT, 0, 20, "v%f a%f theta%f omega%f x%f y%f", v, a, theta, omega, x, y );
 		MikanDraw->DrawTextureRotationC( id, round( x ), round( y ), rx, ry, w, h, theta + M_PI_2 );
 		return *this;
 	}

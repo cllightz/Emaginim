@@ -25,7 +25,6 @@ PlayerBullets& PlayerBullets::shoot( Player& player, Enemies& enemies, int count
 	if ( counter % 51 == 0 ) {
 		if ( enemies.hasEnemy() ) {
 			list.push_back( std::shared_ptr<PlayerBullet>( new MissileBullet( player, enemies.getEnemy() ) ) );
-			MikanDraw->Printf( FONT_PROMPT, 0, 80, "%f %f", list.back()->getX(), list.back()->getY() );
 		}
 	}
 
