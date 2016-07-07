@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include "Enemy.h"
 #include "EnemyBullet.h"
 #include "Player.h"
 #include "PlayerBullets.h"
@@ -11,6 +12,14 @@ private:
 public:
 	inline Enemies() {
 		list = std::vector< std::shared_ptr<Enemy> >();
+	}
+
+	inline bool hasEnemy() {
+		return !list.empty();
+	}
+
+	inline std::shared_ptr<Enemy>& getEnemy() {
+		return list.at( 0 );
 	}
 
 	inline Enemies& move() {

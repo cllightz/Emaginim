@@ -47,7 +47,7 @@ public:
 		v_x = 0.;
 		v_y = 0.;
 
-		hp = 10000;
+		hp = 1000000;
 
 		center_x = MikanWindow->GetWindowWidth( 1 ) / 2.;
 		center_y = MikanWindow->GetWindowHeight( 1 ) / 4.;

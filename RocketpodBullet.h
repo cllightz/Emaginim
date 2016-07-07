@@ -4,7 +4,7 @@
 
 class RocketpodBullet : public PlayerBullet {
 public:
-	RocketpodBullet( Player& player, pixel X = 0., pixel Y = 0., pixel A = 0., double sigma_angle = M_PI_4 / 1000., hp_t DAMAGE = 11. ) {
+	inline RocketpodBullet( Player& player, pixel X, pixel Y ) {
 		id = TEXTURE_BULLET;
 
 		x = player.getX() + X;
@@ -17,16 +17,16 @@ public:
 
 		r = w / 2.;
 
-		damage = DAMAGE;
+		damage = 240;
 
 		v_x = 0.;
 		v_y = 0.;
 
 		std::random_device rnd;
 		std::mt19937 mt( rnd() );
-		std::normal_distribution<> normal_acceleration( A, .01 );
+		std::normal_distribution<> normal_acceleration( 2.5, .01 );
 		pixel a = normal_acceleration( mt );
-		std::normal_distribution<> normal_angle( -M_PI_2, sigma_angle );
+		std::normal_distribution<> normal_angle( -M_PI_2, M_PI_4 / 50 );
 		radian theta = normal_angle( mt );
 		a_x = cos( theta ) * a;
 		a_y = sin( theta ) * a;

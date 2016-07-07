@@ -4,7 +4,7 @@
 
 class GunpodBullet : public PlayerBullet {
 public:
-	GunpodBullet( Player& player, pixel X = 0., pixel Y = 0., pixel V = 50., double sigma_angle = M_PI_4 / 1000., hp_t DAMAGE = 11. ) {
+	inline GunpodBullet( Player& player, pixel X, pixel Y ) {
 		id = TEXTURE_BULLET;
 
 		x = player.getX() + X;
@@ -17,13 +17,13 @@ public:
 
 		r = w / 2.;
 
-		damage = DAMAGE;
+		damage = 60;
 
 		std::random_device rnd;
 		std::mt19937 mt( rnd() );
-		std::normal_distribution<> normal_velocity( V, 1. );
+		std::normal_distribution<> normal_velocity( 50., 1. );
 		pixel v = normal_velocity( mt );
-		std::normal_distribution<> normal_angle( -M_PI_2, sigma_angle );
+		std::normal_distribution<> normal_angle( -M_PI_2, M_PI_4 / 100. );
 		radian theta = normal_angle( mt );
 		v_x = cos( theta ) * v;
 		v_y = sin( theta ) * v;

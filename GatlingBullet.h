@@ -4,11 +4,11 @@
 
 class GatlingBullet : public PlayerBullet {
 public:
-	GatlingBullet( Player& player, pixel X = 0., pixel Y = 0., pixel V = 50., double sigma_angle = M_PI_4 / 1000., hp_t DAMAGE = 11. ) {
+	inline GatlingBullet( Player& player, pixel X ) {
 		id = TEXTURE_BULLET;
 
 		x = player.getX() + X;
-		y = player.getY() + Y;
+		y = player.getY();
 
 		w = 2.;
 		h = 4.;
@@ -17,11 +17,11 @@ public:
 
 		r = w / 2.;
 
-		damage = DAMAGE;
+		damage = 15;
 
 		std::random_device rnd;
 		std::mt19937 mt( rnd() );
-		std::normal_distribution<> normal_velocity( V, 1. );
+		std::normal_distribution<> normal_velocity( 75., 1. );
 		pixel v =  normal_velocity( mt );
 		std::normal_distribution<> normal_angle( -M_PI_2, M_PI_4 / 1000. );
 		radian theta = normal_angle( mt );

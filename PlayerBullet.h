@@ -31,7 +31,7 @@ protected:
 public:
 	PlayerBullet() {}
 
-	PlayerBullet( Player& player ) {
+	inline PlayerBullet( Player& player ) {
 		id = TEXTURE_BULLET;
 
 		x = player.getX();
@@ -73,7 +73,7 @@ public:
 		pixel R = W + w;
 		pixel T = 0 - h;
 		pixel B = H + h;
-
+		MikanDraw->Printf( FONT_PROMPT, 0, 100, "%f %f", x, y );
 		return
 			x <= L && v_x <= 000 ||
 			R <= x && 000 <= v_x ||
@@ -81,7 +81,7 @@ public:
 			B <= y && 000 <= v_y;
 	}
 
-	inline PlayerBullet& move() {
+	virtual inline PlayerBullet& move() {
 		x_previous = x;
 		y_previous = y;
 		v_x += a_x;
@@ -93,7 +93,7 @@ public:
 
 	bool isCollision( Enemies& );
 
-	inline PlayerBullet& draw() {
+	virtual inline PlayerBullet& draw() {
 		MikanDraw->DrawTextureC( id, round( x ), round( y ), rx, ry, w, h );
 		return *this;
 	}

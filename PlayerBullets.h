@@ -1,11 +1,14 @@
 #pragma once
 #include <vector>
-#include "Enemy.h"
+#include "Enemies.h"
 #include "GatlingBullet.h"
 #include "GunpodBullet.h"
+#include "MissileBullet.h"
 #include "PlayerBullet.h"
 #include "Player.h"
 #include "RocketpodBullet.h"
+
+class Enemies;
 
 class PlayerBullets {
 private:
@@ -28,26 +31,7 @@ public:
 		return *this;
 	}
 
-	inline PlayerBullets& shoot( Player& player, int counter ) {
-		list.push_back( std::shared_ptr<PlayerBullet>( new GatlingBullet( player, +3. ) ) );
-		list.push_back( std::shared_ptr<PlayerBullet>( new GatlingBullet( player, -3. ) ) );
-
-		if ( counter % 5 == 0 ) {
-			list.push_back( std::shared_ptr<PlayerBullet>( new GunpodBullet( player, + 9., 2., 30., M_PI_4 / 100, 45 ) ) );
-			list.push_back( std::shared_ptr<PlayerBullet>( new GunpodBullet( player, - 9., 2., 30., M_PI_4 / 100, 45 ) ) );
-			list.push_back( std::shared_ptr<PlayerBullet>( new GunpodBullet( player, +17., 4., 30., M_PI_4 / 100, 45 ) ) );
-			list.push_back( std::shared_ptr<PlayerBullet>( new GunpodBullet( player, -17., 4., 30., M_PI_4 / 100, 45 ) ) );
-		}
-
-		if ( counter % 11 == 0 ) {
-			list.push_back( std::shared_ptr<PlayerBullet>( new RocketpodBullet( player, +13., 2., 2.5, M_PI_4 / 50, 240 ) ) );
-			list.push_back( std::shared_ptr<PlayerBullet>( new RocketpodBullet( player, -13., 2., 2.5, M_PI_4 / 50, 240 ) ) );
-			list.push_back( std::shared_ptr<PlayerBullet>( new RocketpodBullet( player, +21., 4., 2.5, M_PI_4 / 50, 240 ) ) );
-			list.push_back( std::shared_ptr<PlayerBullet>( new RocketpodBullet( player, -21., 4., 2.5, M_PI_4 / 50, 240 ) ) );
-		}
-		
-		return *this;
-	}
+	PlayerBullets& shoot( Player&, Enemies&, int );
 
 	inline PlayerBullets& strike( Enemies& enemies ) {
 		for ( std::vector< std::shared_ptr<PlayerBullet> >::iterator ite = list.begin(); ite != list.end(); ) {

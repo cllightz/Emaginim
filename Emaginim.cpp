@@ -7,6 +7,7 @@
 #include "EnemyBullet.h"
 #include "EnemyBullets.h"
 #include "Player.h"
+#include "PlayerBullets.h"
 
 namespace {
 	Player player;
@@ -36,7 +37,7 @@ int MainLoop() {
 	MikanDraw->ClearScreen();
 
 	if ( MikanInput->GetKeyNum( K_Z ) ) {
-		playerBullets.shoot( player, counter );
+		playerBullets.shoot( player, enemies, counter );
 	}
 
 	if ( counter == 0 ) {
