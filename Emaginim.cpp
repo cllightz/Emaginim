@@ -36,7 +36,7 @@ int MainLoop() {
 	MikanDraw->ClearScreen();
 
 	if ( MikanInput->GetKeyNum( K_Z ) ) {
-		playerBullets.shoot( player );
+		playerBullets.shoot( player, counter );
 	}
 
 	if ( counter == 0 ) {
@@ -49,9 +49,9 @@ int MainLoop() {
 
 	playerBullets.strike( enemies );
 
-	player.draw();
 	enemies.draw();
 	playerBullets.draw();
+	player.draw();
 
 	if ( enemies.isCollision( player ) ) {
 		return 1;
