@@ -34,8 +34,8 @@ public:
 		if ( counter % 5 == 0 ) {
 			list.push_back( std::shared_ptr<PlayerBullet>( new GunpodBullet( player, + 9., 2., 30., M_PI_4 / 100 ) ) );
 			list.push_back( std::shared_ptr<PlayerBullet>( new GunpodBullet( player, - 9., 2., 30., M_PI_4 / 100 ) ) );
-			list.push_back( std::shared_ptr<PlayerBullet>( new GunpodBullet( player, +15., 4., 30., M_PI_4 / 100 ) ) );
-			list.push_back( std::shared_ptr<PlayerBullet>( new GunpodBullet( player, -15., 4., 30., M_PI_4 / 100 ) ) );
+			list.push_back( std::shared_ptr<PlayerBullet>( new GunpodBullet( player, +17., 4., 30., M_PI_4 / 100 ) ) );
+			list.push_back( std::shared_ptr<PlayerBullet>( new GunpodBullet( player, -17., 4., 30., M_PI_4 / 100 ) ) );
 		}
 		
 		return *this;
