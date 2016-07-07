@@ -18,6 +18,8 @@ protected:
 	pixel y_previous;
 	pixel v_x;
 	pixel v_y;
+	pixel a_x;
+	pixel a_y;
 	pixel w;
 	pixel h;
 	pixel r;
@@ -46,6 +48,8 @@ public:
 
 		v_x = 0.;
 		v_y = -M_PI*M_PI*M_E*M_E;
+		a_x = 0.;
+		a_y = 0.;
 
 		damage = 1.;
 	}
@@ -80,6 +84,8 @@ public:
 	inline PlayerBullet& move() {
 		x_previous = x;
 		y_previous = y;
+		v_x += a_x;
+		v_y += a_y;
 		x += v_x;
 		y += v_y;
 		return *this;

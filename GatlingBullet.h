@@ -34,5 +34,8 @@ public:
 
 		x_previous = x;
 		y_previous = y;
+
+		a_x = 0.;
+		a_y = 0.;
 	}
 };
